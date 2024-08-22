@@ -1,0 +1,103 @@
+/* images from: https://www.toptal.com/designers/subtlepatterns/ */
+
+*{
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-image: url('media/embossed-diamond.webp');
+}
+
+body{
+    background-image: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#title{
+    background-image: none;
+
+    display: flex;
+    align-items: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#current-word-text{
+    background-image: none;
+    
+    background-color: #6c6969;
+    color: white;
+    
+    border:5px darkblue solid; 
+    border-radius: 20px;
+
+    padding:20px;
+
+    margin:20px 0;
+}
+
+#ghost-display{
+    background-image: none;
+    
+    align-items: center;
+    font-size: 1.7em;
+    margin: 20px;
+}
+
+#text-input-form{    
+    background-image: none;
+    
+    align-items: center;
+    font-size: 1.7em;
+    margin: 20px;
+}
+
+#response-text{
+    background-image: none;
+    
+    align-items: center;
+    font-size: 1.3em;
+    margin: 20px;
+}
+
+#keyboard{
+    background-image: none;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    margin-bottom: 50px;
+    /*background-image: url('media/denim.webp');*/
+}
+
+/* letters generated inside 'keyboard' by the js */
+#keyboard button{
+    padding: 0.85rem;
+    margin: 0.8rem;
+    border-radius: 20px;
+    background: darkblue;
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+}
+
+.inactive{
+    display: none;
+}
+
+.hover{
+    transform: scale(1.25);
+}
+
+.hover:active{
+    transform: scale(1);
+}
