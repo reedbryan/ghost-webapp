@@ -31,6 +31,17 @@ After graphing the results of my word-frequency dictionary, I noticed that the m
 After tweaking the script a bit more to adjust for the log results, I ended up with a much more processable range of frequencies with values from 13.81 to 0, and an average of 10.73:
 ![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-finalplot.png)
 
+Lastly, to address the words that were not recognized by the [wordfreq](https://pypi.org/project/wordfreq/) library (the pillar of zeros). I considered simply eliminating those values from the word bank. However, after inspection, I decided against that as most of these words were not very obscure. Instead, I assigned them all a random frequency using a probability distribution that biases the outcome towards the lower end of the range:
+
+```python
+def random_in_scaled_range(min_value, max_value):
+    # Randomly pick a number between 0 and 1, and scale it to the range [min_value, max_value]
+    return (max_value - min_value) * (random() ** 2) + min_value  # Using the square to skew towards the lower end
+```
+
+This way, the dataset is still distributed in the way I wanted, but no longer has any useless entries. The result is as follows, with values ranging from 13.81 to 0, and an average of 7.83:
+![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-scaledplot.png)
+
 The final `dictionary.json` allows the AI to evaluate words in a more human-like manner, weighing each letter based on all the possible words it could create and the frequency with which those words appear in the English language. The data is also alphabetized, which allows the AI to more quickly evaluate possible branches of words that can be derived from a new letter.
 
 All plots and versions of the dictionary can be found under [data-prep](https://github.com/reedbryan/ghost-webapp/tree/main/data-prep).
