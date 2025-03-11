@@ -43,7 +43,9 @@ AI's logic is to search the wordbank for all possible words created from the cur
 Since the data is alphabetized, in the code the AI groups collections of words that share the same prefix to compare next first few letters. This way if there is a group of words are continuations of a word that ends well for the AI it will weight all those words possitively because they could be considered by the player but could never be reached without spelling that first word. An example of this is the word ['fantast'](https://www.wordplays.com/scrabble-dictionary/fantast). The AI evaluates this group as such:
 
 current_sequence: fanta
+
 potential_next_letter: s
+
 current_group: fantast (fantast is a word in scrable dict)
 
   "fantast": 13.540576151502028,
