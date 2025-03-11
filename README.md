@@ -14,7 +14,7 @@ The player whose turn it is may — instead of adding a letter — challenge the
 
 If a complete word is formed in this way, the player who called the final letter of it loses the round. (the minimum length of a word that counts is four letters.) The losing player earns a "letter" (as in the basketball game horse), with players being eliminated when they have been given all five letters forming the word "ghost".
 
-# Word Bank
+## Word Bank
 The database of words used by the app's bot was created first downloading a .json of the scrabble dictionary I found on github [here](https://github.com/benjamincrom/scrabble/blob/master/scrabble/dictionary.json).
 
 I then filtered out all the words with 3 or less characters since in Ghost we only keep track of words with 4 or more letters. I also checked for any consecutive duplicates.
@@ -35,7 +35,7 @@ The final dictionary.json would allow the AI to evaluate words in a more human m
 All plots and versions of the dictionary can be found under [data-prep](https://github.com/reedbryan/ghost-webapp/tree/main/data-prep)
 
 
-# The AI
+## The AI
 AI's logic is to search the wordbank for all possible words created from the current sequence of letters. It then weighs each letter by the combine weight of all word from that list based on the following logic.
 - if the word would end with the user choosing the final letter (the user loses the game) then that word's weight is its _positive_ frequency
 - if the word would end with the AI choosing the final letter (the AI loses the game) then that word's weight is its _negative_ frequency
