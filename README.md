@@ -74,8 +74,8 @@ current_group: fantast (fantast is a word in the Scrabble dictionary)
 
 The fantast group has a total weight of 48.7058901139179, added to `s`
 
-New group for letter: s with base word: fantasy
+potential_next_letter: s 
 
-...
+current_group: fantasy
 
-The logic here is that if the bot choses the next letter 's' then the user may chose 't' trying to spell 'fantastic', 'fantastical' etc, and would lose the game.
+etc...
