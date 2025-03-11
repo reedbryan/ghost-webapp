@@ -39,23 +39,37 @@ All plots and versions of the dictionary can be found under [data-prep](https://
 AI's logic is to search the wordbank for all possible words created from the current sequence of letters. It then weighs each letter by the combine weight of all word from that list based on the following logic.
 - if the word would end with the user choosing the final letter (the user loses the game) then that word's weight is its _positive_ frequency
 - if the word would end with the AI choosing the final letter (the AI loses the game) then that word's weight is its _negative_ frequency
-Since the data is alphabetized, in the code the AI groups collections of words that share the same prefix to compare the first few letters. It does this to avoid giving high weight to letters which look great based on the total weight of words it could create but have certain, high-frequency words that the player could chose to put the AI in a corner. An example of this is as follows
 
-const possible_words = ['international', 'interference', 'intermediate', 'interview', 'internal', 'interpretation'];
-const current_word = 'inter';  // The current sequence of letters
+Since the data is alphabetized, in the code the AI groups collections of words that share the same prefix to compare next first few letters. This way if there is a group of words are continuations of a word that ends well for the AI it will weight all those words possitively because they could be considered by the player but could never be reached without spelling that first word. An example of this is the word ['fantast'](https://www.wordplays.com/scrabble-dictionary/fantast). The AI evaluates this group as such:
 
-letter_group = [
-    'international',
-    'interference',
-    'intermediate',
-    'interview',
-    'internal',
-    'interpretation'
-];
+current_sequence: fanta
+potential_next_letter: s
+current_group: fantast (fantast is a word in scrable dict)
 
-IDK IF THIS EXPLANATION IS GONNA WORK
-TRY RUNNING THE APP AND USING THE CONSOLE TO LOOK AT SOME REAL CASES
+  "fantast": 13.540576151502028,
+  "fantastic": 5.297819805787551,
+  "fantastical": 9.32762584687208,
+  "fantasticalities": 0.0,
+  "fantasticality": 0.0,
+  "fantastically": 9.186720393794841,
+  "fantasticalness": 0.0,
+  "fantasticalnesses": 0.0,
+  "fantasticate": 0.0,
+  "fantasticated": 0.0,
+  "fantasticates": 0.0,
+  "fantasticating": 0.0,
+  "fantastication": 0.0,
+  "fantastications": 0.0,
+  "fantastico": 11.813849152544828,
+  "fantasticoes": 0.0,
+  "fantastics": 13.079874914918607,
+  "fantasts": 0.0,
 
+The fantast group has a total weight of 48.7058901139179, added to 's'
+
+New group for letter: s with base word: fantasy
+
+...
 
 If the word group ends in a "player win" (baseEndsWell is true), the frequency of the next_word is added to the group_weight, which represents the importance of that letter in forming the optimal word.
 This way a letter is evaluated by how often the user will select their letter with the goal of spelling a word that would eventually lose them the game.
