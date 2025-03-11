@@ -21,13 +21,12 @@ I then filtered out all the words with 3 or less characters since in Ghost we on
 
 In order for the AI to make decisions on which letter to select I needed each word in the dictionary to have a "frequency" value which represents how frequently the word is used in daily life. The [wordfreq](https://pypi.org/project/wordfreq/) python library has a "word_frequency(word, lang, wordlist='best', minimum=0.0)" funtion which gives a spoken-frequency rating from 0.0 to 1.0 to the passed word.
 
-Using the [wordfreq](https://pypi.org/project/wordfreq/) I wrote a short Python script that iterates through the dictionary, giving it a value from 0-1.
+Using the [wordfreq](https://pypi.org/project/wordfreq/) I wrote a short Python script that iterates through the dictionary, giving it a value from 0-1 which, when graphed, resulted in the following:
 ![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-plot.png)
-However, after graphing the results of my word-frequecy dictionary I noticed that the majority of words where given incredably small values in comparison to the heavy hitters like "the" or "is".
-
-To fix this I used a Python's log() function to smooth out the range of frequency values giving me a more readable range from 13.81 to 0 with an average of 10.73.
-
-I wanted to get an idea 
+After graphing the results of my word-frequecy dictionary I noticed that the majority of words where given incredably small values in comparison to a small subset with very large ones. After some debugging I found that this was due to the heavy hitters like "the" or "is" being given frequencies hundreds of times larger than most other words (which makes sense). To fix this I used a Python's log() function to smooth out the range of frequency values giving this:
+![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-logplot.png)
+After tweaking the script a little more to adjust for the log results I endded up with a much more readable range of frequencies from 13.81 to 0 with an average of 10.73:
+![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-finalplot.png)
 
 All versions of the dictionary can be found under [data-prep](https://github.com/reedbryan/ghost-webapp/tree/main/data-prep):
 
