@@ -22,7 +22,7 @@ I then filtered out all the words with 3 or less characters since in Ghost we on
 In order for the AI to make decisions on which letter to select I needed each word in the dictionary to have a "frequency" value which represents how frequently the word is used in daily life. The [wordfreq](https://pypi.org/project/wordfreq/) python library has a "word_frequency(word, lang, wordlist='best', minimum=0.0)" funtion which gives a spoken-frequency rating from 0.0 to 1.0 to the passed word.
 
 Using the [wordfreq](https://pypi.org/project/wordfreq/) I wrote a short Python script that iterates through the dictionary, giving it a value from 0-1.
-![Alt text](scrabbledic-plot.png)
+![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-plot.png)
 However, after graphing the results of my word-frequecy dictionary I noticed that the majority of words where given incredably small values in comparison to the heavy hitters like "the" or "is".
 
 To fix this I used a Python's log() function to smooth out the range of frequency values giving me a more readable range from 13.81 to 0 with an average of 10.73.
