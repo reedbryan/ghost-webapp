@@ -21,15 +21,41 @@ I then filtered out all the words with 3 or less characters since in Ghost we on
 
 In order for the AI to make decisions on which letter to select I needed each word in the dictionary to have a "frequency" value which represents how frequently the word is used in daily life. The [wordfreq](https://pypi.org/project/wordfreq/) python library has a "word_frequency(word, lang, wordlist='best', minimum=0.0)" funtion which gives a spoken-frequency rating from 0.0 to 1.0 to the passed word.
 
-Using the [wordfreq](https://pypi.org/project/wordfreq/) I wrote a short Python script that iterates through the dictionary, giving it a value from 0-1 which, when graphed, resulted in the following:
+Using the [wordfreq](https://pypi.org/project/wordfreq/) I wrote a short Python script that iterates through the dictionary, giving it a value from 0-1 which, when graphed, resulted in the following data:
 ![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-plot.png)
+
 After graphing the results of my word-frequecy dictionary I noticed that the majority of words where given incredably small values in comparison to a small subset with very large ones. After some debugging I found that this was due to the heavy hitters like "the" or "is" being given frequencies hundreds of times larger than most other words (which makes sense). To fix this I used a Python's log() function to smooth out the range of frequency values giving this:
 ![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-logplot.png)
-After tweaking the script a little more to adjust for the log results I endded up with a much more readable range of frequencies from 13.81 to 0 with an average of 10.73:
+
+After tweaking the script a little more to adjust for the log results I endded up with a much more processable range of frequencies with values from 13.81 to 0 with and an average of 10.73:
 ![Alt text](https://github.com/reedbryan/ghost-webapp/blob/main/data-prep/scrabbledic-finalplot.png)
 
-All versions of the dictionary can be found under [data-prep](https://github.com/reedbryan/ghost-webapp/tree/main/data-prep):
+The final dictionary.json would allow the AI to evaluate words in a more human manor. Weighing the each letter by of all the possible words that it could create and the frequency in which those words appear in the english language. The data is also alphabetized which allows the AI to more quickly evaluate possible branchs of words that can be derived from a new letter.
+
+All plots and versions of the dictionary can be found under [data-prep](https://github.com/reedbryan/ghost-webapp/tree/main/data-prep)
 
 
 # The AI
-AI's logic is to search the wordbank for all possible words created from the user's first letter. It then selects a word from that list based on frequency and an element of random an sends the next letter to be reviewed by the user. The user will then either challange the AI to spell a possible word from the current sequence of letter or will input another letter. On that input the AI will again find all possible words that can be spelled from the current sequence, if none are found it will challange the user, if there are it select another word based on frequency/randomness and send back the next letter. The process repeats as such until a word it spelled or a challange is issued.
+AI's logic is to search the wordbank for all possible words created from the current sequence of letters. It then weighs each letter by the combine weight of all word from that list based on the following logic.
+- if the word would end with the user choosing the final letter (the user loses the game) then that word's weight is its _positive_ frequency
+- if the word would end with the AI choosing the final letter (the AI loses the game) then that word's weight is its _negative_ frequency
+Since the data is alphabetized, in the code the AI groups collections of words that share the same prefix to compare the first few letters. It does this to avoid giving high weight to letters which look great based on the total weight of words it could create but have certain, high-frequency words that the player could chose to put the AI in a corner. An example of this is as follows
+
+const possible_words = ['international', 'interference', 'intermediate', 'interview', 'internal', 'interpretation'];
+const current_word = 'inter';  // The current sequence of letters
+
+letter_group = [
+    'international',
+    'interference',
+    'intermediate',
+    'interview',
+    'internal',
+    'interpretation'
+];
+
+IDK IF THIS EXPLANATION IS GONNA WORK
+TRY RUNNING THE APP AND USING THE CONSOLE TO LOOK AT SOME REAL CASES
+
+
+If the word group ends in a "player win" (baseEndsWell is true), the frequency of the next_word is added to the group_weight, which represents the importance of that letter in forming the optimal word.
+This way a letter is evaluated by how often the user will select their letter with the goal of spelling a word that would eventually lose them the game.
