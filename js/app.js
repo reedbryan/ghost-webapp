@@ -175,7 +175,7 @@ function GenerateResponse(){
     else{
         if (possible_words.length == 0){
             // CHALLANGE: 
-            response_text.textContent = 'I challage, enter the word you are spelling.';       
+            response_text.textContent = 'I challange, enter the word you are spelling.';       
             BotChallange();
         }
         else{
@@ -215,18 +215,20 @@ function GenerateResponse(){
     //console.log('possible words: ' + possible_words);
 }
 function getOptimalLetter(){
+    
+    // fill an array[0...25] with the correstponding weight of each letter
     const letter_weights = {};
     for (let i = 0; i < 26; i++) {
         const letter = String.fromCharCode(97 + i); // 97 is the char code for 'a'
         letter_weights[letter] = 0;
     }
     
-    
+    // For each possible word
     for (let i=0; i < possible_words.length; i++){
         const base_word = possible_words[i]
         // the difference between the legth of the word being looked at and the current word
         const baseword_lettersLeft = base_word.length - current_word.length
-        const baseEndsWell = baseword_lettersLeft % 2 === 0
+        const baseEndsWell = baseword_lettersLeft % 2 === 0  // true if this word will end in a bot win, false for a player win
         const group_letter = base_word[current_word.length]
 
         if (baseword_lettersLeft == 1 || letter_weights[group_letter] == -Infinity){
@@ -288,7 +290,8 @@ function getOptimalLetter(){
 
     console.log(letter_weights);
     //return getRandomLetter(); easy mode (for debugging)
-    return findMaxKey(letter_weights);
+    
+    return findMaxKey(letter_weights); // findMaxKey returns the letter with the highest value in letter_weights
 }
 function BotChallange(){
     player_under_challange = true;
