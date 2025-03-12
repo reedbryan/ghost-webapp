@@ -83,7 +83,7 @@ current_group: fantast (fantast is a word in the Scrabble dictionary)
 "fantasts": 6.188865825833491,
 ```
 
-The fantast group has a total weight of 48.7058901139179, added to `s`
+The fantast group has a total weight of 135.0869037592532, added to `s`
 
 potential_next_letter: s 
 
