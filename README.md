@@ -60,7 +60,7 @@ current_sequence: `fanta`
 
 potential_next_letter: `s`
 
-current_group: fantast (fantast is a word in the Scrabble dictionary)
+current_group: `fantast` (fantast is a word in the Scrabble dictionary)
 
   ```json
 "fantast": 13.540576151502028,
@@ -83,10 +83,10 @@ current_group: fantast (fantast is a word in the Scrabble dictionary)
 "fantasts": 6.188865825833491,
 ```
 
-The fantast group has a total weight of 135.0869037592532, added to `s`
+The fantast group has a total weight of `135.0869037592532`, added to `s`
 
-potential_next_letter: s 
+potential_next_letter: `s` 
 
-current_group: fantasy
+current_group: `fantasy`
 
 etc...
