@@ -63,24 +63,24 @@ potential_next_letter: `s`
 current_group: fantast (fantast is a word in the Scrabble dictionary)
 
   ```json
-  "fantast": 13.540576151502028,
-  "fantastic": 5.297819805787551,
-  "fantastical": 9.32762584687208,
-  "fantasticalities": 0.0,
-  "fantasticality": 0.0,
-  "fantastically": 9.186720393794841,
-  "fantasticalness": 0.0,
-  "fantasticalnesses": 0.0,
-  "fantasticate": 0.0,
-  "fantasticated": 0.0,
-  "fantasticates": 0.0,
-  "fantasticating": 0.0,
-  "fantastication": 0.0,
-  "fantastications": 0.0,
-  "fantastico": 11.813849152544828,
-  "fantasticoes": 0.0,
-  "fantastics": 13.079874914918607,
-  "fantasts": 0.0
+"fantast": 13.540576151502028,
+"fantastic": 5.297819805787551,
+"fantastical": 9.32762584687208,
+"fantasticalities": 3.105795636401058,
+"fantasticality": 11.025784227722198,
+"fantastically": 9.186720393794841,
+"fantasticalness": 2.1790310879568686,
+"fantasticalnesses": 8.420926860060522,
+"fantasticate": 9.996165423001804,
+"fantasticated": 9.11736602437187,
+"fantasticates": 8.24391391881929,
+"fantasticating": 0.5691611640852016,
+"fantastication": 3.163558317165693,
+"fantastications": 0.32142535636116726,
+"fantastico": 11.813849152544828,
+"fantasticoes": 10.508443652054114,
+"fantastics": 13.079874914918607,
+"fantasts": 6.188865825833491,
 ```
 
 The fantast group has a total weight of 48.7058901139179, added to `s`
