@@ -4,6 +4,11 @@ Ghost (also known as ghosts or pig) is a written or spoken word game in which pl
 
 With this app, you can play Ghost against an AI opponent. [Click here to play](https://reedbryan.github.io/ghost-webapp/).
 
+## Table of Contents
+- [Game Rules](#game-rules)
+- [Word Bank Database](#word-bank)
+- [AI](#ai)
+
 ## Game Rules
 
 Players take turns calling a letter, adding those letters to a shared, growing word fragment. (For example, if the first player calls "T", the second might call "R" to make "TR".)
